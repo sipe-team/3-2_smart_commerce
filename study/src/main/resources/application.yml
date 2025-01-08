@@ -1,8 +1,10 @@
+server:
+  port: 7979
 spring:
   application:
     name: study
   datasource:
-    url: '${DATASOURCE_HOST:jdbc:mysql://localhost:3306/shopping}'
+    url: '${DATASOURCE_HOST:jdbc:mysql://localhost:3316/study}'
     username: '${DATASOURCE_USERNAME:root}'
     password: '${DATASOURCE_PASSWORD:1234}'
     driver-class-name: '${DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}'

@@ -5,12 +5,14 @@ services:
     image: mysql:8.0.34
     restart: always
     ports:
-      - '3306:3306'
+      - '3316:3306'
     environment:
       - MYSQL_ROOT_PASSWORD=1234
+    volumes:
+      - ./infra/mysql/initdb.d:/docker-entrypoint-initdb.d
   redis:
     container_name: redis
     image: redis:7.2.5
     restart: always
     ports:
-      - '6379:6379'
+      - '6389:6379'

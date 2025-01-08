@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: study
+  datasource:
+    url: '${DATASOURCE_HOST:jdbc:mysql://localhost:3306/shopping}'
+    username: '${DATASOURCE_USERNAME:root}'
+    password: '${DATASOURCE_PASSWORD:1234}'
+    driver-class-name: '${DATASOURCE_DRIVER:com.mysql.cj.jdbc.Driver}'
+  modulith:
+    events:
+      jdbc:
+        schema-initialization:
+          enabled: true
+      republish-outstanding-events-on-restart: true

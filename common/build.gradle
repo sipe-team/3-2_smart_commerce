@@ -5,4 +5,5 @@ plugins {
 
 dependencies {
     implementation group: 'org.jmolecules.integrations', name: 'jmolecules-starter-ddd', version: '0.21.0'
+
 }

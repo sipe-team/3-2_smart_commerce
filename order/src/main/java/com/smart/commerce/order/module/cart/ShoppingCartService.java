@@ -1,10 +1,10 @@
 package com.smart.commerce.order.module.cart;
 
-import com.smart.commerce.order.module.commodity.Commodity;
+import com.smart.commerce.order.module.cart.domain.ShoppingCart;
 import com.smart.commerce.order.module.menu.Menu;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+@Service
 public interface ShoppingCartService {
     void addItem(Menu commodity);
     void removeItem(Menu commodity);
@@ -13,5 +13,5 @@ public interface ShoppingCartService {
     void order();
 
     //    void setStore(Commodity store);
-    List<Menu> getItems(int userId);
+    ShoppingCart getItems(int userId);
 }

@@ -1,4 +1,4 @@
-package com.smart.commerce.order.module.recipe;
+package com.smart.commerce.owner.module.recipe;
 
 import org.jmolecules.ddd.annotation.ValueObject;
 

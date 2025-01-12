@@ -6,5 +6,6 @@ plugins {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation group: 'org.jmolecules.integrations', name: 'jmolecules-starter-ddd', version: '0.21.0'
+    implementation group: 'org.springframework.modulith', name: 'spring-modulith-events-api', version: '1.3.1'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

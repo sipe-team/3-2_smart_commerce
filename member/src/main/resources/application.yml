@@ -1,0 +1,16 @@
+server:
+  port: 12290
+spring:
+  application:
+    name: member
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/member
+    username: root
+    password: 1234
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+    database: mysql

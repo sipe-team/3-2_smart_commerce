@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   mysql:
-    container_name: mysql
+    container_name: study-mysql
     image: mysql:8.0.34
     restart: always
     ports:
@@ -11,7 +11,7 @@ services:
     volumes:
       - ./infra/mysql/initdb.d:/docker-entrypoint-initdb.d
   redis:
-    container_name: redis
+    container_name: study-redis
     image: redis:7.2.5
     restart: always
     ports:

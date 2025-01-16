@@ -1,0 +1,23 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+ceo:
+  health: hello ceo local
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/ceo}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:1234}
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+ceo:
+  health: hello ceo prod
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}

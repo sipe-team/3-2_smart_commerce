@@ -1,0 +1,11 @@
+server:
+  port: 8080
+  shutdown: graceful
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+    include: ceo, order
+  lifecycle:
+    timeout-per-shutdown-phase: 1m
+  application:
+    name: bootstrap

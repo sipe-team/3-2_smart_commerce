@@ -1,10 +1,11 @@
 version: "3.8"
 services:
-  mysql:
-    container_name: mysql
-    image: mysql:8.0.34
+  postgres:
+    image: postgres:latest
     restart: always
     ports:
-      - '3306:3306'
+      - "5432:5432"
     environment:
-      - MYSQL_ROOT_PASSWORD=1234
+      POSTGRES_DB: postgres
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234

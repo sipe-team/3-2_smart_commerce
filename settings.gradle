@@ -1,7 +1,8 @@
 rootProject.name = 'commerce'
 
 include(
+        "bootstrap",
         "common",
-        "owner",
+        "ceo",
         "order"
 )

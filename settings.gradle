@@ -2,7 +2,7 @@ rootProject.name = 'commerce'
 
 include(
         "bootstrap",
-        "common",
         "ceo",
+        "customer",
         "order"
 )

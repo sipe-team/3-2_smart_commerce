@@ -5,8 +5,10 @@ plugins {
 
 dependencies {
     implementation(project(":ceo"))
+    implementation(project(":customer"))
     implementation(project(":order"))
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    runtimeOnly 'org.postgresql:postgresql' // 추후에 옮길 예정
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }

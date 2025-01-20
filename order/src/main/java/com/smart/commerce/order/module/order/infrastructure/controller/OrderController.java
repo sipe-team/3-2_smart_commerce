@@ -1,6 +1,7 @@
-package com.smart.commerce.order.module.order.web;
+package com.smart.commerce.order.module.order.infrastructure.controller;
 
 import com.smart.commerce.order.module.order.application.OrderService;
+import com.smart.commerce.order.module.order.infrastructure.OrderRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(path = "/order")

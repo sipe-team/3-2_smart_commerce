@@ -1,6 +1,6 @@
 package com.smart.commerce.order.module.payment.applicatiojn;
 
-import com.smart.commerce.order.module.order.event.OrderToPaymentEvent;
+import com.smart.commerce.order.module.order.infrastructure.listener.event.OrderToPaymentEvent;
 import org.springframework.modulith.events.ApplicationModuleListener;
 import org.springframework.stereotype.Component;
 

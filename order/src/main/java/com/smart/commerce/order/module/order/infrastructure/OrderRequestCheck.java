@@ -1,4 +1,4 @@
-package com.smart.commerce.order.module.order.web;
+package com.smart.commerce.order.module.order.infrastructure;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

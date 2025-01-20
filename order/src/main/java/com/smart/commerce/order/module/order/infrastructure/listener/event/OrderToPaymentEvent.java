@@ -1,7 +1,5 @@
-package com.smart.commerce.order.module.order.event;
+package com.smart.commerce.order.module.order.infrastructure.listener.event;
 
-import com.smart.commerce.order.module.order.domain.OrderRecord;
-import org.jmolecules.ddd.annotation.ValueObject;
 import org.jmolecules.event.types.DomainEvent;
 
 // TODO 필요한 값 설정 @희동

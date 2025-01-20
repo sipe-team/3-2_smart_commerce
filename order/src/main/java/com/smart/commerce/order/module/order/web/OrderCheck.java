@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 //@Constraint(validatedBy = OrderValidator.class)
 @Target( { ElementType.PARAMETER, ElementType.FIELD } )
 @Retention(RetentionPolicy.RUNTIME)
-public @interface OrderCheck {
+public @interface OrderRequestCheck {
     String message() default "Shipment price doesn't match the requested price.";
     Class<?>[] groups() default {};
 //    Class<? extends Payload>[] payload() default {};

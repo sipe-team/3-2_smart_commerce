@@ -21,11 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class OrderServiceImpl implements OrderService {
     private final ApplicationEventPublisher events;
     private final ShoppingCartService shoppingCartService;
-    private final OrderRepository orderRepository;
+    private final OrderAdapter OrderAdapter;
 
     @Transactional
     public OrderToPaymentEvent orderToPayment(OrderRequest orderRequest) {
         ShoppingCart shoppingCart = shoppingCartService.getItems(orderRequest.userId());
+
         OrderRecord orderRecord = saveOrder(shoppingCart, orderRequest);
         OrderToPaymentEvent orderToPaymentEvent = new OrderToPaymentEvent(orderRecord.orderId(), OrderStatus.PENDING_PAYMENT);
         events.publishEvent(orderToPaymentEvent);

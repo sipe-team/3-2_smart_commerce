@@ -1,17 +1,17 @@
-package com.smart.commerce.order.module.order.infrastructure.controller;
+package com.smart.commerce.order.module.order.presentation.controller;
 
-import com.smart.commerce.order.module.order.application.OrderService;
-import com.smart.commerce.order.module.order.infrastructure.OrderRequest;
+import com.smart.commerce.order.module.order.application.dto.OrderRequest;
+import com.smart.commerce.order.module.order.application.service.OrderUsecase;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(path = "/order")
 @RestController
 public class OrderController {
 
-    private final OrderService orderService;
+    private final OrderUsecase orderUsecase;
 
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
+    public OrderController(OrderUsecase orderUsecase) {
+        this.orderUsecase = orderUsecase;
     }
 
     @GetMapping
@@ -28,8 +28,8 @@ public class OrderController {
     @PostMapping
     public String order(@RequestBody OrderRequest orderRequest) {
         // Process the order request using the order service
-        
-        orderService.orderToPayment(orderRequest);
+
+        orderUsecase.orderToPayment(orderRequest);
 
         // Return a confirmation string
         return "order";

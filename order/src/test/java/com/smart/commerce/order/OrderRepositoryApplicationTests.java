@@ -4,12 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
-class OrderApplicationModuleTests {
+@SpringBootTest
+class OrderRepositoryApplicationTests {
 
     @Test
     void contextLoads() {
-//        var modules = ApplicationModules.of(Application.class).verify();
-
     }
 
 }

@@ -37,4 +37,12 @@ public class CeoRepositoryAdapter implements CeoRepository {
                 .map(ceoDomainEntityMapper::toDomain)
                 .orElseThrow(RuntimeException::new);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Ceo findById(final long ceoId) {
+        return ceoEntityRepository.findById(ceoId)
+                .map(ceoDomainEntityMapper::toDomain)
+                .orElseThrow(RuntimeException::new);
+    }
 }

@@ -11,6 +11,8 @@ public class Ceo {
     private final String birth;
     private final String phoneNumber;
     private final String email;
+    private final Cbr cbr;
+    private final Cbo cbo;
 
     public static Ceo initialize(
             final String account,
@@ -27,12 +29,15 @@ public class Ceo {
                 name,
                 birth,
                 phoneNumber,
-                email
+                email,
+                null,
+                null
         );
     }
 
-    public Ceo(final Long id, final String account, final String password, final String name,
-               final String birth, final String phoneNumber, final String email) {
+    public Ceo(final Long id, final String account, final String password,
+               final String name, final String birth, final String phoneNumber,
+               final String email, final Cbr cbr, final Cbo cbo) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -40,6 +45,8 @@ public class Ceo {
         this.birth = birth;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.cbr = cbr;
+        this.cbo = cbo;
     }
 
     public void login(final Predicate<String> predicate) {
@@ -47,6 +54,15 @@ public class Ceo {
         if(!matches) {
             throw new IllegalArgumentException("Password not matched");
         }
+    }
+
+    public Ceo registerCbr(final Cbr cbr) {
+        return new Ceo(id, account, password, name, birth, phoneNumber, email, cbr, cbo);
+    }
+
+
+    public Ceo registerCbo(final Cbo cbo) {
+        return new Ceo(id, account, password, name, birth, phoneNumber, email, cbr, cbo);
     }
 
     public Long getId() {
@@ -77,6 +93,14 @@ public class Ceo {
         return email;
     }
 
+    public Cbr getCbr() {
+        return cbr;
+    }
+
+    public Cbo getCbo() {
+        return cbo;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
@@ -89,5 +113,4 @@ public class Ceo {
     public int hashCode() {
         return Objects.hashCode(getId());
     }
-
 }

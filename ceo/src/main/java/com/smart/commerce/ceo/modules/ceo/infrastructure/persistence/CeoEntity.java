@@ -5,12 +5,13 @@ import org.hibernate.annotations.Comment;
 
 import java.util.Objects;
 
-@Table(name = "ceos")
+@Table(name = "ceo")
 @Entity
 public class CeoEntity {
 
     @Comment("고유번호")
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Comment("계정")
@@ -22,7 +23,7 @@ public class CeoEntity {
     private String password;
 
     @Comment("이름")
-    @Column(name = "name", nullable = false)
+    @Column(name = "brand", nullable = false)
     private String name;
 
     @Comment("생년월일")
@@ -37,10 +38,18 @@ public class CeoEntity {
     @Column(name = "email", nullable = false)
     private String email;
 
+    @OneToOne(mappedBy = "ceo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private CbrEntity cbrEntity;
+
+    @OneToOne(mappedBy = "ceo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private CboEntity cboEntity;
+
     public CeoEntity() {
     }
 
-    public CeoEntity(final Long id, final String account, final String password, final String name, final String birth, final String phoneNumber, final String email) {
+    public CeoEntity(final Long id, final String account, final String password,
+                     final String name, final String birth, final String phoneNumber,
+                     final String email, final CbrEntity cbrEntity, final CboEntity cboEntity) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -48,6 +57,14 @@ public class CeoEntity {
         this.birth = birth;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.cbrEntity = cbrEntity;
+        if (cbrEntity != null) {
+            cbrEntity.setCeo(this);
+        }
+        this.cboEntity = cboEntity;
+        if (cboEntity != null) {
+            cboEntity.setCeo(this);
+        }
     }
 
     public Long getId() {
@@ -104,6 +121,14 @@ public class CeoEntity {
 
     public void setEmail(final String email) {
         this.email = email;
+    }
+
+    public CbrEntity getCbr() {
+        return cbrEntity;
+    }
+
+    public CboEntity getCbo() {
+        return cboEntity;
     }
 
     @Override

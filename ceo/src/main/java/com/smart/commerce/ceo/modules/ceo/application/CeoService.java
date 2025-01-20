@@ -36,8 +36,12 @@ public class CeoService implements CeoRegisterUseCase, CeoLoginUseCase {
 
     private Ceo ceo(final CeoRegisterCommand command) {
         return Ceo.initialize(
-                command.account(), command.password(), command.name(),
-                command.birth(), command.phoneNumber(), command.email()
+                command.account(),
+                passwordEncoder.encode(command.password()),
+                command.name(),
+                command.birth(),
+                command.phoneNumber(),
+                command.email()
         );
     }
 }

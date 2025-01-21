@@ -12,12 +12,16 @@ order:
 ---
 
 spring:
+  session:
+    jdbc:
+      initialize-schema: always
   config:
     activate:
       on-profile: prod
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
+
 
 order:
   health: hello order prod

@@ -1,0 +1,25 @@
+server:
+  port: 8080
+  shutdown: graceful
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+    include: ceo, customer, order
+  lifecycle:
+    timeout-per-shutdown-phase: 1m
+  application:
+    name: bootstrap
+  datasource:
+    driver-class-name: ${DATASOURCE_DRIVER_CLASS_NAME:org.postgresql.Driver}
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:1234}
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: false
+        show_sql: false
+        dialect: ${HIBERNATE_DIALECT:org.hibernate.dialect.PostgreSQLDialect}

@@ -1,0 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+ceo:
+  health: hello ceo local
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+ceo:
+  health: hello ceo prod
+

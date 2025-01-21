@@ -1,0 +1,17 @@
+### 회원가입
+POST http://localhost:8080/customer/auth/sign-up
+Content-Type: application/json
+
+{
+  "email": "testest@testest.com",
+  "password": "zzz1234"
+}
+
+### 로그인
+POST http://localhost:8080/customer/auth/sign-in
+Content-Type: application/json
+
+{
+  "email": "testest@testest.com",
+  "password": "zzz1234"
+}

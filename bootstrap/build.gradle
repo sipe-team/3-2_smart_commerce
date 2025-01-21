@@ -1,0 +1,14 @@
+plugins {
+    id 'org.springframework.boot' version '3.4.1'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+dependencies {
+    implementation(project(":ceo"))
+    implementation(project(":customer"))
+    implementation(project(":order"))
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    runtimeOnly 'org.postgresql:postgresql' // 추후에 옮길 예정
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}

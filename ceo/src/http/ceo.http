@@ -1,0 +1,12 @@
+### CEO 회원가입
+POST http://localhost:8080/api/ceos
+Content-Type: application/json
+
+{
+  "account": "ceo",
+  "password": "ceo",
+  "name": "ceo",
+  "birth": "ceo",
+  "phoneNumber": "ceo",
+  "email": "ceo"
+}

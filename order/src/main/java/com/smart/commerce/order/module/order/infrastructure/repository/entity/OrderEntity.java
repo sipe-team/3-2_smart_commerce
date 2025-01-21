@@ -1,4 +1,4 @@
-package com.smart.commerce.order.module.order.entity;
+package com.smart.commerce.order.module.order.infrastructure.repository.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

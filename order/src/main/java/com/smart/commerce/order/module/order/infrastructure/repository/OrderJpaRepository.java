@@ -3,8 +3,7 @@ package com.smart.commerce.order.module.order.infrastructure.repository;
 import com.smart.commerce.order.module.cart.application.dto.ShoppingCart;
 import com.smart.commerce.order.module.order.application.dto.OrderRequest;
 import com.smart.commerce.order.module.order.domain.OrderRepository;
-import com.smart.commerce.order.module.order.domain.model.Order;
-import com.smart.commerce.order.module.order.entity.OrderEntity;
+import com.smart.commerce.order.module.order.infrastructure.repository.entity.OrderEntity;
 import org.springframework.stereotype.Component;
 
 

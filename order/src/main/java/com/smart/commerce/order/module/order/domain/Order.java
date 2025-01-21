@@ -1,4 +1,4 @@
-package com.smart.commerce.order.module.order.domain.model;
+package com.smart.commerce.order.module.order.domain;
 
 import com.smart.commerce.order.module.order.infrastructure.listener.event.OrderStatus;
 import com.smart.commerce.order.module.order.infrastructure.listener.event.OrderToPaymentEvent;
@@ -9,9 +9,9 @@ public class Order {
     @Getter
     Long id;
 
-    public OrderToPaymentEvent pay(ApplicationEventPublisher events) {
+    public OrderToPaymentEvent pay(ApplicationEventPublisher eventPublisher) {
         OrderToPaymentEvent event = new OrderToPaymentEvent(id, OrderStatus.PENDING_PAYMENT);
-        events.publishEvent(event);
+        eventPublisher.publishEvent(event);
         return event;
     }
 }

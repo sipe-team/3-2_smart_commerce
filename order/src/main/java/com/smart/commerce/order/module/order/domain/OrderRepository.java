@@ -8,7 +8,7 @@ import org.jmolecules.ddd.annotation.Repository;
 @Repository
 public interface OrderRepository {
 
-    void checkOrderValid(ShoppingCart shoppingCart, OrderRequest orderRequest);
+    boolean checkOrderValid(ShoppingCart shoppingCart, OrderRequest orderRequest);
 
     OrderEntity save(ShoppingCart shoppingCart, OrderRequest orderRequest);
 }

@@ -1,15 +1,21 @@
 package com.smart.commerce.order.module.order.infrastructure.repository.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import jakarta.persistence.*;
+import lombok.*;
 
-//@Entity
-
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class OrderEntity {
-//    @Id
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public int getId() {
-        return id;
+    private Long userId;
+
+
+    public static OrderEntity create(Long userId) {
+        return new OrderEntity(null, userId);
     }
 }

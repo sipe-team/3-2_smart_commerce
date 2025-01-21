@@ -2,13 +2,10 @@ package com.smart.commerce.order.module.order.application.service;
 
 import com.smart.commerce.order.module.cart.application.dto.ShoppingCart;
 import com.smart.commerce.order.module.order.application.dto.OrderRequest;
-import com.smart.commerce.order.module.order.domain.OrderRepository;
-import com.smart.commerce.order.module.order.domain.Order;
-import com.smart.commerce.order.module.order.application.port.ShoppingCartPort;
-
-import com.smart.commerce.order.module.order.infrastructure.listener.event.OrderToPaymentEvent;
-
 import com.smart.commerce.order.module.order.application.mapper.OrderMapper;
+import com.smart.commerce.order.module.order.application.port.ShoppingCartPort;
+import com.smart.commerce.order.module.order.domain.Order;
+import com.smart.commerce.order.module.order.domain.OrderRepository;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,9 +23,10 @@ public class OrderUsecase {
     }
 
     @Transactional
-    public OrderToPaymentEvent orderToPayment(OrderRequest orderRequest) {
+    public Order orderToPayment(OrderRequest orderRequest) {
         ShoppingCart shoppingCart = shoppingCartPort.getItems(orderRequest.userId());
         Order order = OrderMapper.toDomain(orderRepository.save(shoppingCart, orderRequest));
-        return order.pay(eventPublisher);
+        order.pay(eventPublisher);
+        return order;
     }
 }

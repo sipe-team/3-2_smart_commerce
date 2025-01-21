@@ -1,7 +1,9 @@
 package com.smart.commerce.order.module.order.infrastructure.listener.event;
 
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+
 public enum OrderStatus {
-    PENDING_PAYMENT,
+    @JsonEnumDefaultValue PENDING_PAYMENT,
     CANCEL_PAYMENT,
-    FAIL_PAYMENT
+    FAIL_PAYMENT,
 }

@@ -1,7 +1,9 @@
 package com.smart.commerce.order.module.order.presentation.controller;
 
 import com.smart.commerce.order.module.order.application.dto.OrderRequest;
+import com.smart.commerce.order.module.order.application.dto.OrderResponse;
 import com.smart.commerce.order.module.order.application.service.OrderUsecase;
+import com.smart.commerce.order.module.order.domain.Order;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(path = "/order")
@@ -26,12 +28,16 @@ public class OrderController {
      * @return a string indicating the outcome of the order process
      */
     @PostMapping
-    public String order(@RequestBody OrderRequest orderRequest) {
+    public OrderResponse order(@RequestBody OrderRequest orderRequest) {
         // Process the order request using the order service
 
-        orderUsecase.orderToPayment(orderRequest);
+        Order order = orderUsecase.orderToPayment(orderRequest);
+        OrderResponse orderResponse = OrderResponse.builder()
+                .orderStatus(order.getOrderStatus())
+                .orderNumber(order.getOrderNumber())
+                .build();
 
         // Return a confirmation string
-        return "order";
+        return orderResponse;
     }
 }

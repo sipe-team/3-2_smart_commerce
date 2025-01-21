@@ -7,6 +7,8 @@ import com.smart.commerce.order.module.order.infrastructure.repository.OrderJpaR
 import com.smart.commerce.order.module.order.infrastructure.repository.entity.OrderEntity;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
 public class OrderRepositoryAdapter implements OrderRepository {
 
@@ -23,7 +25,8 @@ public class OrderRepositoryAdapter implements OrderRepository {
 
     @Override
     public OrderEntity save(ShoppingCart shoppingCart, OrderRequest orderRequest) {
-        OrderEntity orderEntity = OrderEntity.create(orderRequest.userId());
+        UUID orderNumber = UUID.randomUUID();
+        OrderEntity orderEntity = OrderEntity.create(orderRequest.userId(), orderRequest.storeId(), orderNumber);
         return orderJpaRepository.save(orderEntity);
     }
 }

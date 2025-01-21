@@ -1,7 +1,12 @@
 package com.smart.commerce.order.module.order.infrastructure.repository.entity;
 
+import com.smart.commerce.order.module.order.infrastructure.listener.event.OrderStatus;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
@@ -14,8 +19,14 @@ public class OrderEntity {
 
     private Long userId;
 
+    private Long storeId;
 
-    public static OrderEntity create(Long userId) {
-        return new OrderEntity(null, userId);
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
+
+    private UUID orderNumber;
+
+    public static OrderEntity create(Long userId, Long storeId, UUID orderNumber) {
+        return new OrderEntity(null, userId, storeId, OrderStatus.PENDING_PAYMENT, orderNumber);
     }
 }

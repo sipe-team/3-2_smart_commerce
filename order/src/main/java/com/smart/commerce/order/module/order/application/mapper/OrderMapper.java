@@ -7,7 +7,7 @@ public class OrderMapper {
 
 
     public static Order toDomain(OrderEntity orderEntity) {
-        return new Order(orderEntity.getId());
+        return new Order(orderEntity.getId(), orderEntity.getOrderStatus(), orderEntity.getOrderNumber());
     }
 
 }

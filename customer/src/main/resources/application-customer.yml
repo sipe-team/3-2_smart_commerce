@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+customer:
+  health: hello customer local
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+customer:
+    health: hello customer prod

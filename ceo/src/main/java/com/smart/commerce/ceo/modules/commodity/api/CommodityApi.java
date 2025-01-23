@@ -1,9 +1,9 @@
-package com.smart.commerce.customer.modules.commodity.api;
+package com.smart.commerce.ceo.modules.commodity.api;
 
-import com.smart.commerce.customer.modules.commodity.api.dto.CommodityRegisterRequest;
-import com.smart.commerce.customer.modules.commodity.api.dto.CommodityResponse;
-import com.smart.commerce.customer.modules.commodity.api.dto.PriceChangeRequest;
-import com.smart.commerce.customer.modules.commodity.application.CommodityService;
+import com.smart.commerce.ceo.modules.commodity.api.dto.CommodityRegisterRequest;
+import com.smart.commerce.ceo.modules.commodity.api.dto.CommodityResponse;
+import com.smart.commerce.ceo.modules.commodity.api.dto.PriceChangeRequest;
+import com.smart.commerce.ceo.modules.commodity.application.CommodityService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

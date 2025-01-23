@@ -10,10 +10,19 @@ order:
     username: ${DATABASE_USERNAME:postgres}
     password: ${DATABASE_PASSWORD:1234}
 ---
+
 spring:
+  session:
+    jdbc:
+      initialize-schema: always
   config:
     activate:
       on-profile: prod
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+
 order:
   health: hello order prod
   datasource:

@@ -1,8 +1,8 @@
-package com.smart.commerce.customer.modules.commodity.infrastructure;
+package com.smart.commerce.ceo.modules.commodity.infrastructure;
 
-import com.smart.commerce.customer.modules.commodity.domain.Commodity;
-import com.smart.commerce.customer.modules.commodity.domain.CommodityId;
-import com.smart.commerce.customer.modules.commodity.domain.CommodityRepository;
+import com.smart.commerce.ceo.modules.commodity.domain.Commodity;
+import com.smart.commerce.ceo.modules.commodity.domain.CommodityId;
+import com.smart.commerce.ceo.modules.commodity.domain.CommodityRepository;
 import jakarta.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
 

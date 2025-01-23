@@ -1,7 +1,7 @@
-package com.smart.commerce.customer.modules.commodity.application;
+package com.smart.commerce.ceo.modules.commodity.application;
 
-import com.smart.commerce.customer.modules.commodity.api.dto.CommodityResponse;
-import com.smart.commerce.customer.modules.commodity.domain.*;
+import com.smart.commerce.ceo.modules.commodity.api.dto.CommodityResponse;
+import com.smart.commerce.ceo.modules.commodity.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

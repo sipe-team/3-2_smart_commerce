@@ -1,4 +1,4 @@
-package com.smart.commerce.customer.modules.commodity.domain;
+package com.smart.commerce.ceo.modules.commodity.domain;
 
 public class Commodity {
     private final CommodityId id;

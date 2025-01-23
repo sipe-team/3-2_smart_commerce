@@ -1,4 +1,4 @@
-package com.smart.commerce.customer.modules.commodity.infrastructure;
+package com.smart.commerce.ceo.modules.commodity.infrastructure;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

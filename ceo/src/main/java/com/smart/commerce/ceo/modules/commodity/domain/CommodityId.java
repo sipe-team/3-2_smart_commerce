@@ -1,4 +1,4 @@
-package com.smart.commerce.customer.modules.commodity.domain;
+package com.smart.commerce.ceo.modules.commodity.domain;
 
 import java.util.Objects;
 import java.util.UUID;

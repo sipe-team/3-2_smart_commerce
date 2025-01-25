@@ -51,4 +51,12 @@ public class CommodityService {
                         commodity.getPrice().getValue()))
                 .collect(Collectors.toList());
     }
+
+    public void deleteCommodity(String commodityStr) {
+        CommodityId commodityId = new CommodityId(commodityStr);
+
+        if(!commodityRepository.existsById(commodityId)) throw new IllegalArgumentException("존재하지 않는 상품입니다.");
+
+        commodityRepository.deleteById(commodityId);
+    }
 }

@@ -34,4 +34,10 @@ public class CommodityApi {
     public ResponseEntity<List<CommodityResponse>> getCommodityList(){
         return ResponseEntity.ok(commodityService.getCommodityList());
     }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteCommodity(@RequestParam String commodityId){
+        commodityService.deleteCommodity(commodityId);
+        return ResponseEntity.ok().build();
+    }
 }

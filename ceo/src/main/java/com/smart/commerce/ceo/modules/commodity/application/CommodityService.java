@@ -22,15 +22,22 @@ public class CommodityService {
         CommodityPrice commodityPrice = new CommodityPrice(price);
         CommodityId commodityId = CommodityId.generate();
         Commodity commodity = new Commodity(commodityId, commodityName, commodityPrice);
+        // => 생성하는 아이. factory?!?!
+//        Commodity commodity = new Commodity(name, price);
+
         commodityRepository.save(commodity);
     }
 
     public void changePrice(String commodityIdStr, Integer price) {
         CommodityId commodityId = new CommodityId(commodityIdStr);
+
         Commodity commodity = commodityRepository.findById(commodityId)
                 .orElseThrow(()-> new IllegalArgumentException("존재하지 않는 상품입니다."));
+
         CommodityPrice newPrice = new CommodityPrice(price);
+
         commodity.changePrice(newPrice);
+
         commodityRepository.save(commodity);
     }
 

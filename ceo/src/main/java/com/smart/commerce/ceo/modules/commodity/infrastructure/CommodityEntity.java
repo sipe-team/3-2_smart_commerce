@@ -1,26 +1,33 @@
 package com.smart.commerce.ceo.modules.commodity.infrastructure;
 
+import com.smart.commerce.ceo.modules.commodity.domain.Commodity;
+import com.smart.commerce.ceo.modules.commodity.domain.CommodityId;
+import com.smart.commerce.ceo.modules.commodity.domain.CommodityName;
+import com.smart.commerce.ceo.modules.commodity.domain.CommodityPrice;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
+import java.util.UUID;
 
 @Entity
 @Table(name="commodity")
 public class CommodityEntity {
     @Id
-    private String id;
+    private UUID id;
     private String name;
     private Integer price;
 
-    protected CommodityEntity() {}
-
-    public CommodityEntity(String id, String name, Integer price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
+    public CommodityEntity() {
     }
 
-    public String getId() {
+    public CommodityEntity(CommodityId id, CommodityName name, CommodityPrice price) {
+        this.id = id.getValue();
+        this.name = name.getValue();
+        this.price = price.getValue();
+    }
+
+    public UUID getId() {
         return id;
     }
 
@@ -30,5 +37,9 @@ public class CommodityEntity {
 
     public Integer getPrice() {
         return price;
+    }
+
+    public Commodity toDomain() {
+        return new Commodity(id, name, price);
     }
 }

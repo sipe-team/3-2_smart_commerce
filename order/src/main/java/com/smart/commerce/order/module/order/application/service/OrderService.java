@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class OrderService {
     private final ShoppingCartPort shoppingCartPort;
     private final OrderRepository orderRepository;
-
     public OrderService(ShoppingCartPort shoppingCartPort, OrderRepository orderRepository) {
         this.shoppingCartPort = shoppingCartPort;
         this.orderRepository = orderRepository;
@@ -26,6 +25,7 @@ public class OrderService {
     @Transactional
     public Order orderToPayment(OrderRequest orderRequest) {
         ShoppingCart shoppingCart = shoppingCartPort.getItems(orderRequest.customerId());
+
         Order order = orderRepository.save(shoppingCart, orderRequest);
         return order;
     }

@@ -3,6 +3,7 @@ package com.smart.commerce.order.module.order.infrastructure.adpter;
 import com.smart.commerce.order.global.support.exception.OrderNotExistException;
 import com.smart.commerce.order.module.cart.application.dto.ShoppingCart;
 import com.smart.commerce.order.module.order.application.dto.OrderRequest;
+import com.smart.commerce.order.module.order.application.port.out.StoreStatusPort;
 import com.smart.commerce.order.module.order.domain.Order;
 import com.smart.commerce.order.module.order.domain.OrderRepository;
 import com.smart.commerce.order.module.order.support.factory.OrderFactory;
@@ -17,9 +18,11 @@ import java.util.UUID;
 public class OrderRepositoryAdapter implements OrderRepository {
 
     private final OrderJpaRepository orderJpaRepository;
+    private final StoreStatusPort statusPort;
 
-    public OrderRepositoryAdapter(OrderJpaRepository orderJpaRepository) {
+    public OrderRepositoryAdapter(OrderJpaRepository orderJpaRepository, StoreStatusPort statusPort) {
         this.orderJpaRepository = orderJpaRepository;
+        this.statusPort = statusPort;
     }
 
     @Override
@@ -36,6 +39,10 @@ public class OrderRepositoryAdapter implements OrderRepository {
 
     @Override
     public Order save(ShoppingCart shoppingCart, OrderRequest orderRequest) {
+        boolean isStoreOpen = statusPort.getStoreOpenStatus(orderRequest.storeId());
+        if (!isStoreOpen) {
+            throw new RuntimeException("Store is closed");
+        }
         UUID orderNumber = UUID.randomUUID();
         OrderEntity orderEntity = OrderFactory.createEntityInitBeforeDelivery(shoppingCart, orderRequest.customerId(), orderRequest.storeId(), orderNumber, orderRequest.orderType());
 

@@ -21,3 +21,8 @@ Content-Type: application/json
   "storeId": 1,
   "status": "OPENED"
 }
+
+
+### 가게 상태 확인
+GET http://localhost:8080/store/status?storeId=2
+Content-Type: application/json

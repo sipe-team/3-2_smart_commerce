@@ -9,3 +9,14 @@ services:
       POSTGRES_DB: postgres
       POSTGRES_USER: root
       POSTGRES_PASSWORD: 1234
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: always
+    ports:
+      - '6379:6379'
+  redis-insight:
+    container_name: redis-insight
+    image: redis/redisinsight:latest
+    ports:
+      - "5540:5540"

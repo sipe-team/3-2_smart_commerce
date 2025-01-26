@@ -13,10 +13,11 @@ import lombok.Getter;
  */
 
 @Getter
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderPayment {
     private String orderNumber;
     private String paymentId;
+    private Long customerId;
+    private Long storeId;
     private PaymentProviderType paymentType;
     private Long totalOrderAmount;
     private Long totalPayedAmount;

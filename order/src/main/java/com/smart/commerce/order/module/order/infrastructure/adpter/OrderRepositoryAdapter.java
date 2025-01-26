@@ -1,6 +1,6 @@
 package com.smart.commerce.order.module.order.infrastructure.adpter;
 
-import com.smart.commerce.order.module.cart.application.dto.ShoppingCart;
+import com.smart.commerce.order.module.cart.domain.ShoppingCart;
 import com.smart.commerce.order.module.order.application.dto.OrderRequest;
 import com.smart.commerce.order.module.order.domain.Order;
 import com.smart.commerce.order.module.order.domain.OrderRepository;

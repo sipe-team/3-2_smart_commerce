@@ -1,6 +1,6 @@
 package com.smart.commerce.order.module.order.application.service;
 
-import com.smart.commerce.order.module.cart.application.dto.ShoppingCart;
+import com.smart.commerce.order.module.cart.domain.ShoppingCart;
 import com.smart.commerce.order.module.order.application.dto.OrderRequest;
 import com.smart.commerce.order.module.order.application.port.ShoppingCartPort;
 import com.smart.commerce.order.module.order.domain.Order;
@@ -23,7 +23,7 @@ public class OrderUsecase {
 
     @Transactional
     public Order orderToPayment(OrderRequest orderRequest) {
-        ShoppingCart shoppingCart = shoppingCartPort.getItems(orderRequest.userId());
+        ShoppingCart shoppingCart = shoppingCartPort.findByCustomerId(orderRequest.userId());
         Order order = orderRepository.save(shoppingCart, orderRequest);
         order.pay(eventPublisher);
         return order;

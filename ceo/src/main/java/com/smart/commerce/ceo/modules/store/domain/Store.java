@@ -1,5 +1,6 @@
 package com.smart.commerce.ceo.modules.store.domain;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Store {
@@ -11,17 +12,22 @@ public class Store {
     private final String description;
     private final String callNumber;
     private final String convenienceInfo;
-    private final String status;
+    private final StoreStatus status;
     private final StoreWorkingTime storeWorkingTime;
 
-    public static Store initialize(final Long aLong, final String name, final String address, final String category, final String description, final String s, final String s1, final String status, final StoreWorkingTime storeWorkingTime) {
-        return new Store(null, aLong, name, address, category, description, s, s1, status, storeWorkingTime);
+    public static Store initialize(
+            final Long ceoId,
+            final String name, final String address, final String category,
+            final String description, final String callNumber, final String convenienceInfo,
+            final String status, final StoreWorkingTime storeWorkingTime
+    ) {
+        return new Store(null, ceoId, name, address, category, description, callNumber, convenienceInfo, StoreStatus.of(status), storeWorkingTime);
     }
 
     public Store(final Long id, final Long ceoId,
                  final String name, final String address, final String category,
                  final String description, final String callNumber, final String convenienceInfo,
-                 final String status, final StoreWorkingTime storeWorkingTime) {
+                 final StoreStatus status, final StoreWorkingTime storeWorkingTime) {
         this.id = id;
         this.ceoId = ceoId;
         this.name = name;
@@ -32,6 +38,15 @@ public class Store {
         this.convenienceInfo = convenienceInfo;
         this.status = status;
         this.storeWorkingTime = storeWorkingTime;
+    }
+
+    public boolean isStoreOpened(final LocalDateTime localDateTime) {
+        final boolean isOpenTime = storeWorkingTime.isOpenTime(localDateTime);
+        return isOpenTime && (status == StoreStatus.OPEN);
+    }
+
+    public Store updateStatus(final String status) {
+        return new Store(id, ceoId, name, address, category, description, callNumber, convenienceInfo, StoreStatus.of(status), storeWorkingTime);
     }
 
     public Long getId() {
@@ -67,7 +82,7 @@ public class Store {
     }
 
     public String getStatus() {
-        return status;
+        return status.name();
     }
 
     public StoreWorkingTime getStoreWorkingTime() {

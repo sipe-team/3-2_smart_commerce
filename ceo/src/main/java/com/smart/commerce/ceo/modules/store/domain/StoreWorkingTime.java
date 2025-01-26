@@ -6,4 +6,8 @@ public record StoreWorkingTime(
         LocalDateTime openTime,
         LocalDateTime closeTime
 ) {
+
+    public boolean isOpenTime(final LocalDateTime localDateTime) {
+        return localDateTime.isAfter(openTime) && localDateTime.isBefore(closeTime);
+    }
 }

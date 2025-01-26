@@ -3,7 +3,6 @@ package com.smart.commerce.ceo.modules.store.infrastructure;
 import com.smart.commerce.ceo.modules.store.domain.Store;
 import com.smart.commerce.ceo.modules.store.domain.StoreRepository;
 import com.smart.commerce.ceo.modules.store.infrastructure.mapper.StoreDomainEntityMapper;
-import com.smart.commerce.ceo.modules.store.infrastructure.persistence.StoreEntity;
 import com.smart.commerce.ceo.modules.store.infrastructure.persistence.StoreEntityRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Component;
@@ -29,6 +28,20 @@ public class StoreRepositoryAdapter implements StoreRepository {
         return Optional.ofNullable(store)
                 .map(storeDomainEntityMapper::toEntity)
                 .map(storeEntityRepository::save)
+                .map(storeDomainEntityMapper::toDomain)
+                .orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Override
+    public Store findById(final Long storeId) {
+        return storeEntityRepository.findById(storeId)
+                .map(storeDomainEntityMapper::toDomain)
+                .orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Override
+    public Store findByIdAndCeoId(final Long storeId, final Long ceoId) {
+        return storeEntityRepository.findByIdAndCeoId(storeId, ceoId)
                 .map(storeDomainEntityMapper::toDomain)
                 .orElseThrow(EntityNotFoundException::new);
     }

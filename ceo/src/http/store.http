@@ -1,0 +1,14 @@
+### 가게 등록
+POST http://localhost:8080/store
+Content-Type: application/json
+
+{
+  "name": "",
+  "address": "",
+  "category": "",
+  "description": "",
+  "callNumber": "",
+  "convenienceInfo": "",
+  "status": "",
+  "openTime": ""
+}

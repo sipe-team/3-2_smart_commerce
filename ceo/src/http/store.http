@@ -10,5 +10,6 @@ Content-Type: application/json
   "callNumber": "",
   "convenienceInfo": "",
   "status": "",
-  "openTime": ""
+  "openTime": "",
+  "closeTime": ""
 }

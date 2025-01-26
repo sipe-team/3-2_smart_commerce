@@ -8,6 +8,7 @@ import com.smart.commerce.ceo.modules.store.domain.StoreWorkingTime;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Service
 public class StoreService implements StoreRegisterUseCase, StoreUpdateStatusUseCase, StoreAssertOpenedUseCase {
@@ -34,7 +35,7 @@ public class StoreService implements StoreRegisterUseCase, StoreUpdateStatusUseC
     }
 
     @Override
-    public boolean isOpened(final Long storeId, final LocalDateTime localDateTime) {
+    public boolean isOpened(final Long storeId, final LocalTime localDateTime) {
         return storeRepository.findById(storeId)
                 .isStoreOpened(localDateTime);
     }

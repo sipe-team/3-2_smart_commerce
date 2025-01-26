@@ -1,6 +1,6 @@
 package com.smart.commerce.ceo.modules.store.application.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public record StoreRegisterCommand(
         Long ceoId,
@@ -11,7 +11,7 @@ public record StoreRegisterCommand(
         String callNumber,
         String convenienceInfo,
         String status,
-        LocalDateTime openTime,
-        LocalDateTime closeTime
+        LocalTime openTime,
+        LocalTime closeTime
 ) {
 }

@@ -1,13 +1,13 @@
 package com.smart.commerce.ceo.modules.store.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public record StoreWorkingTime(
-        LocalDateTime openTime,
-        LocalDateTime closeTime
+        LocalTime openTime,
+        LocalTime closeTime
 ) {
 
-    public boolean isOpenTime(final LocalDateTime localDateTime) {
+    public boolean isOpenTime(final LocalTime localDateTime) {
         return localDateTime.isAfter(openTime) && localDateTime.isBefore(closeTime);
     }
 }

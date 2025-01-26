@@ -1,6 +1,7 @@
 package com.smart.commerce.ceo.modules.store.domain;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class Store {
@@ -40,8 +41,8 @@ public class Store {
         this.storeWorkingTime = storeWorkingTime;
     }
 
-    public boolean isStoreOpened(final LocalDateTime localDateTime) {
-        final boolean isOpenTime = storeWorkingTime.isOpenTime(localDateTime);
+    public boolean isStoreOpened(final LocalTime localTime) {
+        final boolean isOpenTime = storeWorkingTime.isOpenTime(localTime);
         return isOpenTime && (status == StoreStatus.OPEN);
     }
 

@@ -10,7 +10,6 @@ public record StoreRegisterCommand(
         String description,
         String callNumber,
         String convenienceInfo,
-        String status,
         LocalTime openTime,
         LocalTime closeTime
 ) {

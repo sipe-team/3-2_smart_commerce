@@ -5,6 +5,7 @@ import org.hibernate.annotations.Comment;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 @Table(name = "store")
@@ -49,11 +50,11 @@ public class StoreEntity {
 
     @Comment("가게 오픈시간")
     @Column(name = "open_time", nullable = false)
-    private LocalDateTime openTime;
+    private LocalTime openTime;
 
     @Comment("가게 마감시간")
     @Column(name = "close_time", nullable = false)
-    private LocalDateTime closeTime;
+    private LocalTime closeTime;
 
     public StoreEntity() {
     }
@@ -61,7 +62,7 @@ public class StoreEntity {
     public StoreEntity(final Long id, final Long ceoId, final String name,
                        final String address, final String category, final String description,
                        final String callNumber, final String convenienceInfo, final String status,
-                       final LocalDateTime openTime, final LocalDateTime closeTime) {
+                       final LocalTime openTime, final LocalTime closeTime) {
         this.id = id;
         this.ceoId = ceoId;
         this.name = name;
@@ -147,19 +148,19 @@ public class StoreEntity {
         this.status = status;
     }
 
-    public LocalDateTime getOpenTime() {
+    public LocalTime getOpenTime() {
         return openTime;
     }
 
-    public void setOpenTime(final LocalDateTime openTime) {
+    public void setOpenTime(final LocalTime openTime) {
         this.openTime = openTime;
     }
 
-    public LocalDateTime getCloseTime() {
+    public LocalTime getCloseTime() {
         return closeTime;
     }
 
-    public void setCloseTime(final LocalDateTime closeTime) {
+    public void setCloseTime(final LocalTime closeTime) {
         this.closeTime = closeTime;
     }
 

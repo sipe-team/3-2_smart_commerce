@@ -3,6 +3,7 @@ package com.smart.commerce.ceo.modules.store.api.dto;
 import com.smart.commerce.ceo.modules.store.application.dto.StoreRegisterCommand;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public record StoreRegisterRequest(
         String name,
@@ -12,8 +13,8 @@ public record StoreRegisterRequest(
         String callNumber,
         String convenienceInfo,
         String status,
-        LocalDateTime openTime,
-        LocalDateTime closeTime
+        String openTime,
+        String closeTime
 ) {
     public StoreRegisterCommand toCommand(final long ceoId) {
         return new StoreRegisterCommand(
@@ -25,8 +26,8 @@ public record StoreRegisterRequest(
                 callNumber,
                 convenienceInfo,
                 status,
-                openTime,
-                closeTime
+                LocalTime.parse(openTime),
+                LocalTime.parse(closeTime)
         );
     }
 }

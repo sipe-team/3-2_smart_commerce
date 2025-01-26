@@ -7,13 +7,13 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 public class PurgomalumClient {
-    private final RestTemplate restTemplate = new RestTemplate();
+    private static final RestTemplate restTemplate = new RestTemplate();
     private static final String PURGOMALUM_URL = "https://www.purgomalum.com/service/containsprofanity?text=";
 
     public PurgomalumClient() {
     }
 
-    public boolean containsSwearWords(String text) throws UnsupportedEncodingException {
+    public static boolean containsSwearWords(String text) throws UnsupportedEncodingException {
         String encodedText = URLEncoder.encode(text, StandardCharsets.UTF_8);
         String url = PURGOMALUM_URL + encodedText;
         String response = restTemplate.getForObject(url, String.class);

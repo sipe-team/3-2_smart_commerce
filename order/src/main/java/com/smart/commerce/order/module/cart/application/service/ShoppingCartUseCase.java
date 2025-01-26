@@ -1,12 +1,13 @@
 package com.smart.commerce.order.module.cart.application.service;
 
+import com.smart.commerce.order.module.cart.application.dto.ShoppingCartSnapshot;
 import com.smart.commerce.order.module.cart.application.exception.NotFoundCartException;
 import com.smart.commerce.order.module.cart.application.exception.NotFoundMenuException;
 import com.smart.commerce.order.module.cart.domain.Menu;
 import com.smart.commerce.order.module.cart.domain.MenuClient;
 import com.smart.commerce.order.module.cart.domain.ShoppingCart;
 import com.smart.commerce.order.module.cart.domain.ShoppingCartRepository;
-import com.smart.commerce.order.module.order.application.port.ShoppingCartPort;
+import com.smart.commerce.order.module.order.application.port.out.ShoppingCartPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -50,5 +51,11 @@ public class ShoppingCartUseCase implements ShoppingCartPort {
     private Menu getMenu(final Long menuId) {
         return menuClient.findById(menuId)
                 .orElseThrow(() -> new NotFoundMenuException(menuId));
+    }
+
+    @Override
+    public ShoppingCartSnapshot getItems(
+            final Long customerId) {
+        return null;
     }
 }

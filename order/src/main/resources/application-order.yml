@@ -12,6 +12,10 @@ order:
 ---
 
 spring:
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:schema.sql
   session:
     jdbc:
       initialize-schema: always
@@ -20,7 +24,7 @@ spring:
       on-profile: prod
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
 
 
 order:

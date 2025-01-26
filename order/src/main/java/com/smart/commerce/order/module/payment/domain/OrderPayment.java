@@ -1,8 +1,8 @@
 package com.smart.commerce.order.module.payment.domain;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  *  결제
@@ -13,12 +13,72 @@ import lombok.Getter;
  */
 
 @Getter
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderPayment {
     private String orderNumber;
     private String paymentId;
+    private Long customerId;
+    private Long storeId;
     private PaymentProviderType paymentType;
     private Long totalOrderAmount;
     private Long totalPayedAmount;
     private PaymentStatus paymentStatus;
+    private Long timestamp;
+
+    public void success() {
+        this.paymentStatus = PaymentStatus.COMPLETED;
+    }
+
+    public void failed() {
+        this.paymentStatus = PaymentStatus.PAY_FAILED;
+    }
+
+    public boolean isPayFailed() {
+        return this.paymentStatus == PaymentStatus.PAY_FAILED;
+    }
+
+    public static OrderPayment createPendingPayment(
+            String orderNumber,
+            String paymentId,
+            Long customerId,
+            Long storeId,
+            PaymentProviderType paymentType,
+            Long totalOrderAmount,
+            Long totalPayedAmount
+    ) {
+        return new OrderPayment(
+                orderNumber,
+                paymentId,
+                customerId,
+                storeId,
+                paymentType,
+                totalOrderAmount,
+                totalPayedAmount,
+                PaymentStatus.PENDING,
+                System.currentTimeMillis()
+        );
+    }
+
+    public static OrderPayment createFailedPayment(
+            String orderNumber,
+            String paymentId,
+            Long customerId,
+            Long storeId,
+            PaymentProviderType paymentType,
+            Long totalOrderAmount,
+            Long totalPayedAmount
+    ) {
+        return new OrderPayment(
+                orderNumber,
+                paymentId,
+                customerId,
+                storeId,
+                paymentType,
+                totalOrderAmount,
+                totalPayedAmount,
+                PaymentStatus.PAY_FAILED,
+                System.currentTimeMillis()
+        );
+    }
 }

@@ -1,6 +1,5 @@
 package com.smart.commerce.order.module.payment.presentation.controller;
 
-import com.smart.commerce.order.module.payment.application.dto.PayCommand;
 import com.smart.commerce.order.module.payment.application.port.in.PayUseCase;
 import com.smart.commerce.order.module.payment.presentation.dto.PayRequest;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +22,8 @@ public class PaymentController {
     public ResponseEntity<Void> pay(
             @RequestBody PayRequest request
     ) {
-        // TODO. build command with order information and user information
-        payUseCase.pay(new PayCommand());
+        var customerId = 1L;
+        payUseCase.pay(request.toCommand(customerId));
         return ResponseEntity.ok().build();
     }
 }

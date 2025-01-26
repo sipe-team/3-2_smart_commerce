@@ -1,7 +1,7 @@
 package com.smart.commerce.order.module.payment.application.service.strategy;
 
-import com.smart.commerce.order.module.payment.application.dto.PayCommand;
-import com.smart.commerce.order.module.payment.application.dto.PayResult;
+import com.smart.commerce.order.module.payment.application.dto.PayProviderCommand;
+import com.smart.commerce.order.module.payment.application.dto.PayProviderResult;
 import com.smart.commerce.order.module.payment.domain.PaymentProviderType;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,7 @@ public class MoneyPaymentProvider implements PaymentProvider {
     }
 
     @Override
-    public PayResult pay(PayCommand command) {
+    public PayProviderResult pay(PayProviderCommand command) {
         return null;
     }
 }

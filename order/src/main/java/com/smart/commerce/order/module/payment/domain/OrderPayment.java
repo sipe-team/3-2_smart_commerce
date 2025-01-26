@@ -1,8 +1,8 @@
 package com.smart.commerce.order.module.payment.domain;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  *  결제
@@ -13,6 +13,8 @@ import lombok.Getter;
  */
 
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderPayment {
     private String orderNumber;
     private String paymentId;
@@ -22,4 +24,49 @@ public class OrderPayment {
     private Long totalOrderAmount;
     private Long totalPayedAmount;
     private PaymentStatus paymentStatus;
+    private Long timestamp;
+
+    public static OrderPayment success(
+            String orderNumber,
+            String paymentId,
+            Long customerId,
+            Long storeId,
+            PaymentProviderType paymentType,
+            Long totalOrderAmount,
+            Long totalPayedAmount
+    ) {
+        return new OrderPayment(
+                orderNumber,
+                paymentId,
+                customerId,
+                storeId,
+                paymentType,
+                totalOrderAmount,
+                totalPayedAmount,
+                PaymentStatus.PENDING,
+                System.currentTimeMillis()
+        );
+    }
+
+    public static OrderPayment fail(
+            String orderNumber,
+            String paymentId,
+            Long customerId,
+            Long storeId,
+            PaymentProviderType paymentType,
+            Long totalOrderAmount,
+            Long totalPayedAmount
+    ) {
+        return new OrderPayment(
+                orderNumber,
+                paymentId,
+                customerId,
+                storeId,
+                paymentType,
+                totalOrderAmount,
+                totalPayedAmount,
+                PaymentStatus.PAY_FAILED,
+                System.currentTimeMillis()
+        );
+    }
 }

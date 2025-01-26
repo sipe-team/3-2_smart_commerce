@@ -6,10 +6,10 @@ import com.smart.commerce.order.module.order.support.mapper.OrderPayMapper;
 import com.smart.commerce.order.module.payment.application.dto.PayByOrderResult;
 import com.smart.commerce.order.module.payment.application.port.out.GetOrderPort;
 import lombok.RequiredArgsConstructor;
-import org.jmolecules.ddd.annotation.Service;
+import org.springframework.stereotype.Service;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class GetOrderUseCase implements GetOrderPort {
 
     private final OrderService orderService;

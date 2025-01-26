@@ -14,29 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PaymentController {
 
-//    private final PayUseCase payUseCase;
-//    private final GetOrderPort getOrderPort;
-//
-//    public PaymentController(PayUseCase payUseCase, GetOrderPort getOrderPort) {
-//        this.payUseCase = payUseCase;
-//        this.getOrderPort = getOrderPort;
-//    }
-//
-//    @PostMapping
-//    public ResponseEntity<Void> pay(
-//            @RequestBody PayRequest request
-//    ) {
-//        var order = getOrderPort.getOrder(request.orderNumber());
-//
-//        payUseCase.pay(
-//                new PayCommand(
-//                    order.orderNumber(),
-//                    request.providerType(),
-//                    order.totalOrderAmount(),
-//                    order.totalPayedAmount()
-//                )
-//        );
-//
-//        return ResponseEntity.ok().build();
-//    }
+    private final PayUseCase payUseCase;
+
+    public PaymentController(PayUseCase payUseCase) {
+        this.payUseCase = payUseCase;
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> pay(
+            @RequestBody PayRequest request
+    ) {
+        var customerId = 1L;
+        payUseCase.pay(request.toCommand(customerId));
+        return ResponseEntity.ok().build();
+    }
 }

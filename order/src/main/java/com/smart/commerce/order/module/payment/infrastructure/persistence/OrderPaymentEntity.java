@@ -18,7 +18,7 @@ public class OrderPaymentEntity {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "order_number")
+    @Column(name = "order_number", unique = true)
     private String orderNumber;
 
     @Column(name = "payment_id")
@@ -57,7 +57,21 @@ public class OrderPaymentEntity {
         this.paymentStatus = payment.getPaymentStatus();
     }
 
-    static OrderPaymentEntity create(OrderPayment payment) {
+    public OrderPayment toDomain() {
+        return new OrderPayment(
+                orderNumber,
+                paymentId,
+                customerId,
+                storeId,
+                paymentProviderType,
+                totalOrderAmount,
+                totalPayedAmount,
+                paymentStatus,
+                timestamp
+        );
+    }
+
+    static OrderPaymentEntity fromDomain(OrderPayment payment) {
         var newPayment = new OrderPaymentEntity();
         newPayment.orderNumber = payment.getOrderNumber();
         newPayment.paymentId = payment.getPaymentId();
@@ -67,7 +81,7 @@ public class OrderPaymentEntity {
         newPayment.totalOrderAmount = payment.getTotalOrderAmount();
         newPayment.totalPayedAmount = payment.getTotalPayedAmount();
         newPayment.paymentStatus = payment.getPaymentStatus();
-        newPayment.timestamp = System.currentTimeMillis();
+        newPayment.timestamp = payment.getTimestamp();
         return newPayment;
     }
 }

@@ -7,7 +7,6 @@ import com.smart.commerce.ceo.modules.store.domain.StoreRepository;
 import com.smart.commerce.ceo.modules.store.domain.StoreWorkingTime;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Service
@@ -29,8 +28,7 @@ public class StoreService implements StoreRegisterUseCase, StoreUpdateStatusUseC
     @Override
     public Store updateStatus(final StoreUpdateStatusCommand command) {
         final Store store = storeRepository.findByIdAndCeoId(command.storeId(), command.ceoId());
-        store.updateStatus(command.status());
-        return storeRepository.save(store);
+        return storeRepository.save(store.updateStatus(command.status()));
     }
 
     @Override

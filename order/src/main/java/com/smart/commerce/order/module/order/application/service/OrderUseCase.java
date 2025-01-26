@@ -10,15 +10,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class OrderUsecase {
+public class OrderUseCase {
     private final ApplicationEventPublisher eventPublisher;
     private final ShoppingCartPort shoppingCartPort;
     private final OrderRepository orderRepository;
 
-    public OrderUsecase(ApplicationEventPublisher eventPublisher, ShoppingCartPort shoppingCartPort, OrderRepository orderRepository) {
+    public OrderUseCase(ApplicationEventPublisher eventPublisher, ShoppingCartPort shoppingCartPort, OrderRepository orderRepository) {
         this.eventPublisher = eventPublisher;
         this.shoppingCartPort = shoppingCartPort;
         this.orderRepository = orderRepository;
+    }
+
+    public Order getOrderById(Long orderId) {
+        return orderRepository.getOrderById(orderId);
     }
 
     @Transactional
@@ -28,4 +32,6 @@ public class OrderUsecase {
         order.pay(eventPublisher);
         return order;
     }
+
+
 }

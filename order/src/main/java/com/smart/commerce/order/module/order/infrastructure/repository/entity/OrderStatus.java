@@ -1,4 +1,4 @@
-package com.smart.commerce.order.module.order.infrastructure.listener.event;
+package com.smart.commerce.order.module.order.infrastructure.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 

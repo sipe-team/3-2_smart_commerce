@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 
 // TODO JPA 연동 이후 변경 예정
 @Component
-public interface OrderJpaRepository extends JpaRepository<OrderEntity, Integer> {
+public interface OrderJpaRepository extends JpaRepository<OrderEntity, Long> {
 
 }

@@ -8,5 +8,5 @@ public interface ShoppingCartService {
     void order();
 
     //    void setStore(Commodity store);
-    ShoppingCart getItems(int userId);
+    ShoppingCart getItems(int customerId);
 }

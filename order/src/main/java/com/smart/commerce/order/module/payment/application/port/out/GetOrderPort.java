@@ -1,7 +1,7 @@
 package com.smart.commerce.order.module.payment.application.port.out;
 
-import com.smart.commerce.order.module.payment.application.dto.Wilump;
+import com.smart.commerce.order.module.payment.application.dto.PayByOrderResult;
 
 public interface GetOrderPort {
-    Wilump getOrder(String orderNumber);
+    PayByOrderResult getOrder(String orderNumber);
 }

@@ -11,9 +11,9 @@ import java.util.UUID;
 
 public class OrderFactory {
 
-    public static OrderEntity createEntityInitBeforeDelivery(ShoppingCart shoppingCart, long userId, long storeId, UUID orderNumber, OrderType orderType) {
+    public static OrderEntity createEntityInitBeforeDelivery(ShoppingCart shoppingCart, long customer, long storeId, UUID orderNumber, OrderType orderType) {
         return new OrderEntity(null,
-                userId,
+                customer,
                 shoppingCart.storeId(),
                 shoppingCart.storePrice(),// Total price
                 orderType,

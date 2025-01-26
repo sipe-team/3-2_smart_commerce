@@ -18,8 +18,8 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private Long userId;
+    @Column(name = "customer_id")
+    private Long customerId;
 
     @Column(name = "store_id")
     private Long storeId;

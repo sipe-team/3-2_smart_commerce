@@ -12,4 +12,6 @@ public interface OrderRepository {
     boolean checkOrderValid(ShoppingCart shoppingCart, OrderRequest orderRequest);
 
     Order save(ShoppingCart shoppingCart, OrderRequest orderRequest);
+
+    Order getOrderByOrderNumber(String orderNumber);
 }

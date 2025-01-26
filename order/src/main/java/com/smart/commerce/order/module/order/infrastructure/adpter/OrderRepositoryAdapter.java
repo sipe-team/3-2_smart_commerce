@@ -37,8 +37,13 @@ public class OrderRepositoryAdapter implements OrderRepository {
     @Override
     public Order save(ShoppingCart shoppingCart, OrderRequest orderRequest) {
         UUID orderNumber = UUID.randomUUID();
-        OrderEntity orderEntity = OrderFactory.createEntityInitBeforeDelivery(shoppingCart, orderRequest.userId(), orderRequest.storeId(), orderNumber, orderRequest.orderType());
+        OrderEntity orderEntity = OrderFactory.createEntityInitBeforeDelivery(shoppingCart, orderRequest.customerId(), orderRequest.storeId(), orderNumber, orderRequest.orderType());
 
         return OrderMapper.toInitDomain(orderJpaRepository.save(orderEntity));
+    }
+
+    @Override
+    public Order getOrderByOrderNumber(String orderNumber) {
+        return orderJpaRepository.findByOrderNumber(UUID.fromString(orderNumber));
     }
 }

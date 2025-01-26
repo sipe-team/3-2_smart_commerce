@@ -2,7 +2,7 @@ package com.smart.commerce.order.module.order.presentation.controller;
 
 import com.smart.commerce.order.module.order.application.dto.OrderRequest;
 import com.smart.commerce.order.module.order.application.dto.OrderResponse;
-import com.smart.commerce.order.module.order.application.service.OrderUseCase;
+import com.smart.commerce.order.module.order.application.service.OrderService;
 import com.smart.commerce.order.module.order.domain.Order;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class OrderController {
 
-    private final OrderUseCase orderUsecase;
+    private final OrderService orderUsecase;
 
-    public OrderController(OrderUseCase orderUsecase) {
+    public OrderController(OrderService orderUsecase) {
         this.orderUsecase = orderUsecase;
     }
 

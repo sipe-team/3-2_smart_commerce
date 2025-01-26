@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,12 +42,18 @@ public class CommodityService {
         commodityRepository.save(commodity);
     }
 
+    public CommodityResponse getCommodity(UUID commodityIdStr) {
+        CommodityId commodityId = new CommodityId(commodityIdStr);
+        return commodityRepository.findById(commodityId)
+                .map(CommodityResponse::of)
+                .orElseThrow(()->new IllegalArgumentException("존재하지 않는 상품입니다."));
+    }
 
     public List<CommodityResponse> getCommodityList() {
         return commodityRepository.findAll()
                 .stream()
                 .map(commodity -> new CommodityResponse(
-                        commodity.getId().getValue().toString(),
+                        commodity.getId().getValue(),
                         commodity.getName().getValue(),
                         commodity.getPrice().getValue()))
                 .collect(Collectors.toList());

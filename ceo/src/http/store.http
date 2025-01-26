@@ -12,3 +12,12 @@ Content-Type: application/json
   "openTime": "09:00",
   "closeTime": "21:00"
 }
+
+### 가게 상태 변경
+POST http://localhost:8080/store/status
+Content-Type: application/json
+
+{
+  "storeId": 1,
+  "status": "OPENED"
+}

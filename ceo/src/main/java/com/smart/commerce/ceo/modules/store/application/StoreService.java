@@ -29,8 +29,7 @@ public class StoreService implements StoreRegisterUseCase, StoreUpdateStatusUseC
     @Override
     public Store updateStatus(final StoreUpdateStatusCommand command) {
         final Store store = storeRepository.findByIdAndCeoId(command.storeId(), command.ceoId());
-        store.updateStatus(command.status());
-        return storeRepository.save(store);
+        return storeRepository.save(store.updateStatus(command.status()));
     }
 
     @Override

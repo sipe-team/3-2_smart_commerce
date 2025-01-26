@@ -1,11 +1,10 @@
 package com.smart.commerce.order.module.order.application.service;
 
-import com.smart.commerce.order.module.cart.application.dto.ShoppingCart;
+import com.smart.commerce.order.module.cart.application.dto.ShoppingCartSnapshot;
 import com.smart.commerce.order.module.order.application.dto.OrderRequest;
 import com.smart.commerce.order.module.order.application.port.out.ShoppingCartPort;
 import com.smart.commerce.order.module.order.domain.Order;
 import com.smart.commerce.order.module.order.domain.OrderRepository;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +23,7 @@ public class OrderService {
 
     @Transactional
     public Order orderToPayment(OrderRequest orderRequest) {
-        ShoppingCart shoppingCart = shoppingCartPort.getItems(orderRequest.customerId());
+        ShoppingCartSnapshot shoppingCart = shoppingCartPort.getItems(orderRequest.customerId());
 
         Order order = orderRepository.save(shoppingCart, orderRequest);
         return order;

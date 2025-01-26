@@ -1,7 +1,7 @@
 package com.smart.commerce.order.module.order.infrastructure.adpter;
 
 import com.smart.commerce.order.global.support.exception.OrderNotExistException;
-import com.smart.commerce.order.module.cart.application.dto.ShoppingCart;
+import com.smart.commerce.order.module.cart.application.dto.ShoppingCartSnapshot;
 import com.smart.commerce.order.module.order.application.dto.OrderRequest;
 import com.smart.commerce.order.module.order.application.port.out.StoreStatusPort;
 import com.smart.commerce.order.module.order.domain.Order;
@@ -33,12 +33,12 @@ public class OrderRepositoryAdapter implements OrderRepository {
     }
 
     @Override
-    public boolean checkOrderValid(ShoppingCart shoppingCart, OrderRequest orderRequest) {
+    public boolean checkOrderValid(ShoppingCartSnapshot shoppingCart, OrderRequest orderRequest) {
         return true;
     }
 
     @Override
-    public Order save(ShoppingCart shoppingCart, OrderRequest orderRequest) {
+    public Order save(ShoppingCartSnapshot shoppingCart, OrderRequest orderRequest) {
         boolean isStoreOpen = statusPort.getStoreOpenStatus(orderRequest.storeId());
         if (!isStoreOpen) {
             throw new RuntimeException("Store is closed");

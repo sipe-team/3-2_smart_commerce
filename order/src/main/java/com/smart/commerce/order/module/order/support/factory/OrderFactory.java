@@ -1,6 +1,6 @@
 package com.smart.commerce.order.module.order.support.factory;
 
-import com.smart.commerce.order.module.cart.application.dto.ShoppingCart;
+import com.smart.commerce.order.module.cart.application.dto.ShoppingCartSnapshot;
 import com.smart.commerce.order.module.order.infrastructure.repository.entity.DeliveryStatus;
 import com.smart.commerce.order.module.order.infrastructure.repository.entity.OrderEntity;
 import com.smart.commerce.order.module.order.infrastructure.repository.entity.OrderStatus;
@@ -11,13 +11,13 @@ import java.util.UUID;
 
 public class OrderFactory {
 
-    public static OrderEntity createEntityInitBeforeDelivery(ShoppingCart shoppingCart, long customer, long storeId, UUID orderNumber, OrderType orderType) {
+    public static OrderEntity createEntityInitBeforeDelivery(ShoppingCartSnapshot shoppingCart, long customer, long storeId, UUID orderNumber, OrderType orderType) {
         return new OrderEntity(null,
                 customer,
                 shoppingCart.storeId(),
-                shoppingCart.storePrice(),// Total price
+                shoppingCart.storeAmount(),// Total price
                 orderType,
-                shoppingCart.storePrice(),
+                shoppingCart.storeAmount(),
                 0L,
                 OrderStatus.PENDING_PAYMENT,
                 DeliveryStatus.BEFORE_PAYMENT,

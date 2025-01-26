@@ -1,7 +1,7 @@
 package com.smart.commerce.order.module.order.application.port.out;
 
-import com.smart.commerce.order.module.cart.application.dto.ShoppingCart;
+import com.smart.commerce.order.module.cart.application.dto.ShoppingCartSnapshot;
 
 public interface ShoppingCartPort {
-    ShoppingCart getItems(Long customerId);
+    ShoppingCartSnapshot getItems(Long customerId);
 }

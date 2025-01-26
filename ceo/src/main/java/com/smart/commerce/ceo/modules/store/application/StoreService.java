@@ -7,7 +7,6 @@ import com.smart.commerce.ceo.modules.store.domain.StoreRepository;
 import com.smart.commerce.ceo.modules.store.domain.StoreWorkingTime;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Service

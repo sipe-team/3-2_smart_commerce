@@ -10,3 +10,12 @@ Content-Type: application/json
   "phoneNumber": "ceo",
   "email": "ceo"
 }
+
+### CEO 로그인
+POST http://localhost:8080/api/ceos/login
+Content-Type: application/json
+
+{
+  "account": "ceo",
+  "password": "ceo"
+}

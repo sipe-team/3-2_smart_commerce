@@ -1,0 +1,28 @@
+### 가게 등록
+POST http://localhost:8080/store
+Content-Type: application/json
+
+{
+  "name": "store name",
+  "address": "address",
+  "category": "category",
+  "description": "description",
+  "callNumber": "010-1234-5678",
+  "convenienceInfo": "convenienceInfo",
+  "openTime": "09:00",
+  "closeTime": "21:00"
+}
+
+### 가게 상태 변경
+POST http://localhost:8080/store/status
+Content-Type: application/json
+
+{
+  "storeId": 1,
+  "status": "OPENED"
+}
+
+
+### 가게 상태 확인
+GET http://localhost:8080/store/status?storeId=2
+Content-Type: application/json

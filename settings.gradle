@@ -4,5 +4,6 @@ include(
         "bootstrap",
         "ceo",
         "customer",
-        "order"
+        "order",
+        "delivery",
 )

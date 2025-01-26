@@ -1,5 +1,8 @@
 package com.smart.commerce.ceo.modules.commodity.domain;
 
+import com.smart.commerce.ceo.modules.commodity.infrastructure.PurgomalumClient;
+
+import java.io.UnsupportedEncodingException;
 import java.util.Objects;
 
 public class CommodityName {
@@ -13,13 +16,18 @@ public class CommodityName {
     private boolean isValid(String value) {
         if(value == null) return false;
         if(value.length() > 15) return false;
-        if(!value.matches("[\\w ()\\[\\]+&/_]")) return false;
+        if(value.matches("[\\w ()\\[\\]+&/_]")) return false;
         if(containsSwearword(value)) return false;
         return true;
     }
 
     private boolean containsSwearword(String value) {
-        //TODO: purgoMalum 넣기
+        //TODO: purgoMalum을 static으로 해도 되는 것인가??
+        try {
+            if(PurgomalumClient.containsSwearWords(value)) return true;
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("외부 서비스 인코딩 실패");
+        }
         return false;
     }
 

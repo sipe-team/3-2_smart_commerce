@@ -26,7 +26,19 @@ public class OrderPayment {
     private PaymentStatus paymentStatus;
     private Long timestamp;
 
-    public static OrderPayment success(
+    public void success() {
+        this.paymentStatus = PaymentStatus.COMPLETED;
+    }
+
+    public void failed() {
+        this.paymentStatus = PaymentStatus.PAY_FAILED;
+    }
+
+    public boolean isPayFailed() {
+        return this.paymentStatus == PaymentStatus.PAY_FAILED;
+    }
+
+    public static OrderPayment createPendingPayment(
             String orderNumber,
             String paymentId,
             Long customerId,
@@ -48,7 +60,7 @@ public class OrderPayment {
         );
     }
 
-    public static OrderPayment fail(
+    public static OrderPayment createFailedPayment(
             String orderNumber,
             String paymentId,
             Long customerId,

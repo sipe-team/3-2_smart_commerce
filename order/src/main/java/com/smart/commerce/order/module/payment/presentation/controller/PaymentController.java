@@ -1,7 +1,5 @@
 package com.smart.commerce.order.module.payment.presentation.controller;
 
-import com.smart.commerce.order.module.payment.application.dto.PayCommand;
-import com.smart.commerce.order.module.payment.application.port.out.GetOrderPort;
 import com.smart.commerce.order.module.payment.application.port.in.PayUseCase;
 import com.smart.commerce.order.module.payment.presentation.dto.PayRequest;
 import org.springframework.http.ResponseEntity;

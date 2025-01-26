@@ -5,20 +5,21 @@ import com.smart.commerce.order.module.payment.application.dto.PayCommand;
 import com.smart.commerce.order.module.payment.application.dto.PayProviderCommand;
 import com.smart.commerce.order.module.payment.application.dto.PayProviderResult;
 import com.smart.commerce.order.module.payment.application.port.in.PayUseCase;
+import com.smart.commerce.order.module.payment.application.port.in.ProcessPayUseCase;
 import com.smart.commerce.order.module.payment.application.port.out.GetOrderPaymentPort;
 import com.smart.commerce.order.module.payment.application.port.out.GetOrderPort;
 import com.smart.commerce.order.module.payment.application.port.out.UpdateOrderPaymentPort;
 import com.smart.commerce.order.module.payment.domain.OrderPayment;
 import com.smart.commerce.order.module.payment.domain.PaymentProviderType;
+import com.smart.commerce.order.module.payment.domain.event.ExternalPaymentEvent;
 import com.smart.commerce.order.module.payment.domain.event.OrderPaymentEvent;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class PayService implements PayUseCase {
+public class PayService implements PayUseCase, ProcessPayUseCase {
 
     private final PaymentProviderFactory paymentProviderFactory;
     private final GetOrderPort getOrderPort;
@@ -45,6 +46,10 @@ public class PayService implements PayUseCase {
 
         var event = new OrderPaymentEvent(orderPayment.getOrderNumber(), orderPayment.getPaymentStatus());
         eventPublisher.publishEvent(event);
+
+        if (payProviderResult.isSuccess()) {
+            eventPublisher.publishEvent(new ExternalPaymentEvent(orderPayment.getPaymentId(), true));
+        }
     }
 
     private void validateOrderNumber(String orderNumber) {
@@ -88,7 +93,7 @@ public class PayService implements PayUseCase {
             PayProviderResult payProviderResult
     ) {
         if (payProviderResult.isSuccess()) {
-            return OrderPayment.success(
+            return OrderPayment.createPendingPayment(
                     orderInfo.orderNumber(),
                     payProviderResult.paymentId(),
                     orderInfo.customerId(),
@@ -99,7 +104,7 @@ public class PayService implements PayUseCase {
             );
         }
 
-        return OrderPayment.fail(
+        return OrderPayment.createFailedPayment(
                 orderInfo.orderNumber(),
                 payProviderResult.paymentId(),
                 orderInfo.customerId(),
@@ -108,5 +113,30 @@ public class PayService implements PayUseCase {
                 orderInfo.totalOrderAmount(),
                 orderInfo.totalPayedAmount()
         );
+    }
+
+    @Override
+    public void processPayment(String paymentId, boolean isSuccess) {
+        var orderPayment = getOrderPaymentPort.getOrderPayment(paymentId)
+                .orElseThrow(() -> new IllegalStateException("결제 정보를 찾을 수 없습니다."));
+
+        if (isSuccess) {
+            orderPayment.success();
+            updateOrderPaymentPort.updateOrderPayment(orderPayment);
+
+            var event = new OrderPaymentEvent(orderPayment.getOrderNumber(), orderPayment.getPaymentStatus());
+            eventPublisher.publishEvent(event);
+            return;
+        }
+
+        if (orderPayment.isPayFailed()) {
+            return;
+        }
+
+        orderPayment.failed();
+        updateOrderPaymentPort.updateOrderPayment(orderPayment);
+
+        var event = new OrderPaymentEvent(orderPayment.getOrderNumber(), orderPayment.getPaymentStatus());
+        eventPublisher.publishEvent(event);
     }
 }

@@ -3,13 +3,12 @@ POST http://localhost:8080/store
 Content-Type: application/json
 
 {
-  "name": "",
-  "address": "",
-  "category": "",
-  "description": "",
-  "callNumber": "",
-  "convenienceInfo": "",
-  "status": "",
-  "openTime": "",
-  "closeTime": ""
+  "name": "store name",
+  "address": "address",
+  "category": "category",
+  "description": "description",
+  "callNumber": "010-1234-5678",
+  "convenienceInfo": "convenienceInfo",
+  "openTime": "09:00",
+  "closeTime": "21:00"
 }

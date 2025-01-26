@@ -1,6 +1,5 @@
 package com.smart.commerce.ceo.modules.store.domain;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -20,9 +19,9 @@ public class Store {
             final Long ceoId,
             final String name, final String address, final String category,
             final String description, final String callNumber, final String convenienceInfo,
-            final String status, final StoreWorkingTime storeWorkingTime
+            final StoreWorkingTime storeWorkingTime
     ) {
-        return new Store(null, ceoId, name, address, category, description, callNumber, convenienceInfo, StoreStatus.of(status), storeWorkingTime);
+        return new Store(null, ceoId, name, address, category, description, callNumber, convenienceInfo, StoreStatus.CLOSED, storeWorkingTime);
     }
 
     public Store(final Long id, final Long ceoId,
@@ -43,7 +42,7 @@ public class Store {
 
     public boolean isStoreOpened(final LocalTime localTime) {
         final boolean isOpenTime = storeWorkingTime.isOpenTime(localTime);
-        return isOpenTime && (status == StoreStatus.OPEN);
+        return isOpenTime && (status == StoreStatus.OPENED);
     }
 
     public Store updateStatus(final String status) {

@@ -12,7 +12,6 @@ public record StoreRegisterRequest(
         String description,
         String callNumber,
         String convenienceInfo,
-        String status,
         String openTime,
         String closeTime
 ) {
@@ -25,7 +24,6 @@ public record StoreRegisterRequest(
                 description,
                 callNumber,
                 convenienceInfo,
-                status,
                 LocalTime.parse(openTime),
                 LocalTime.parse(closeTime)
         );

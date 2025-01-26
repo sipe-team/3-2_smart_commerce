@@ -3,9 +3,9 @@ package com.smart.commerce.ceo.modules.store.domain;
 import java.util.Arrays;
 
 public enum StoreStatus {
-    OPEN("영업중"),
-    CLOSE("휴업"),
-    CLOSE_PERMANENTLY("폐업");
+    OPENED("영업중"),
+    CLOSED("휴업"),
+    CLOSED_PERMANENTLY("폐업");
 
     private final String status;
 
@@ -13,7 +13,7 @@ public enum StoreStatus {
         return Arrays.stream(values())
                 .filter(it -> it.name().equalsIgnoreCase(status))
                 .findFirst()
-                .orElseGet(() -> CLOSE);
+                .orElseGet(() -> CLOSED);
     }
 
     StoreStatus(final String status) {

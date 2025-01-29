@@ -1,0 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+purchaseorder:
+  health: hello purchaseorder local
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+purchaseorder:
+  health: hello purchaseorder prod
+

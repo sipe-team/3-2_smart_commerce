@@ -6,4 +6,5 @@ include(
         "customer",
         "order",
         "delivery",
+        "purchaseorder"
 )

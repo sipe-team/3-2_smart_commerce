@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RequestMapping("/ceo/commodity")
 @RestController
@@ -33,6 +34,11 @@ public class CommodityApi {
     @GetMapping
     public ResponseEntity<List<CommodityResponse>> getCommodityList(){
         return ResponseEntity.ok(commodityService.getCommodityList());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CommodityResponse> getCommodityById(@PathVariable UUID id){
+        return ResponseEntity.ok(CommodityResponse.of(commodityService.getCommodity(id)));
     }
 
     @DeleteMapping

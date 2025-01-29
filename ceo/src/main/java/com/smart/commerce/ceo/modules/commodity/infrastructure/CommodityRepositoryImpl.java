@@ -40,4 +40,14 @@ public class CommodityRepositoryImpl implements CommodityRepository{
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상품입니다.")));
     }
 
+    @Override
+    public boolean existsById(CommodityId id) {
+        return commodityEntityRepository.existsById(id.getValue());
+    }
+
+    @Override
+    public void deleteById(CommodityId id) {
+
+    }
+
 }

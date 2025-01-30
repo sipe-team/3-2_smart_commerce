@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,26 +23,47 @@ public class CommodityService {
         CommodityPrice commodityPrice = new CommodityPrice(price);
         CommodityId commodityId = CommodityId.generate();
         Commodity commodity = new Commodity(commodityId, commodityName, commodityPrice);
+        // => 생성하는 아이. factory?!?!
+//        Commodity commodity = new Commodity(name, price);
+
         commodityRepository.save(commodity);
     }
 
     public void changePrice(String commodityIdStr, Integer price) {
         CommodityId commodityId = new CommodityId(commodityIdStr);
+
         Commodity commodity = commodityRepository.findById(commodityId)
                 .orElseThrow(()-> new IllegalArgumentException("존재하지 않는 상품입니다."));
+
         CommodityPrice newPrice = new CommodityPrice(price);
+
         commodity.changePrice(newPrice);
+
         commodityRepository.save(commodity);
     }
 
+    public CommodityResponse getCommodity(UUID commodityIdStr) {
+        CommodityId commodityId = new CommodityId(commodityIdStr);
+        return commodityRepository.findById(commodityId)
+                .map(CommodityResponse::of)
+                .orElseThrow(()->new IllegalArgumentException("존재하지 않는 상품입니다."));
+    }
 
     public List<CommodityResponse> getCommodityList() {
         return commodityRepository.findAll()
                 .stream()
                 .map(commodity -> new CommodityResponse(
-                        commodity.getId().getValue().toString(),
+                        commodity.getId().getValue(),
                         commodity.getName().getValue(),
                         commodity.getPrice().getValue()))
                 .collect(Collectors.toList());
+    }
+
+    public void deleteCommodity(String commodityStr) {
+        CommodityId commodityId = new CommodityId(commodityStr);
+
+        if(!commodityRepository.existsById(commodityId)) throw new IllegalArgumentException("존재하지 않는 상품입니다.");
+
+        commodityRepository.deleteById(commodityId);
     }
 }

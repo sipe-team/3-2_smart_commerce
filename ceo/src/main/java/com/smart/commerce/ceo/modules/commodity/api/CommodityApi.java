@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/customer/Commodity")
+@RequestMapping("/ceo/commodity")
 @RestController
 public class CommodityApi {
     private final CommodityService commodityService;
@@ -33,5 +33,11 @@ public class CommodityApi {
     @GetMapping
     public ResponseEntity<List<CommodityResponse>> getCommodityList(){
         return ResponseEntity.ok(commodityService.getCommodityList());
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteCommodity(@RequestParam String commodityId){
+        commodityService.deleteCommodity(commodityId);
+        return ResponseEntity.ok().build();
     }
 }

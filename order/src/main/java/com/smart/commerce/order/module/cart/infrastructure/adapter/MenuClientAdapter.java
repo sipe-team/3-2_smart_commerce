@@ -2,6 +2,8 @@ package com.smart.commerce.order.module.cart.infrastructure.adapter;
 
 import com.smart.commerce.order.module.cart.domain.Menu;
 import com.smart.commerce.order.module.cart.domain.MenuClient;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
 
@@ -11,5 +13,10 @@ public class MenuClientAdapter implements MenuClient {
     @Override
     public Optional<Menu> findById(final Long id) {
         return Optional.empty();
+    }
+
+    @Override
+    public List<Menu> findAllById(final List<Long> menuIds) {
+        return Collections.emptyList();
     }
 }

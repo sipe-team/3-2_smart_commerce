@@ -2,7 +2,9 @@ package com.smart.commerce.order.module.cart.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class OrderLines {
 
@@ -50,5 +52,17 @@ public class OrderLines {
         return orderLines.stream()
                 .filter(orderLine -> orderLine.isEqualsMenu(menuId))
                 .findFirst();
+    }
+
+    public List<Long> getMenuIds() {
+        return orderLines.stream()
+                .map(OrderLine::getMenuId)
+                .collect(Collectors.toList());
+    }
+
+    public Long getAmount(Map<Long, Menu> menus) {
+        return orderLines.stream()
+                .mapToLong(orderLine -> orderLine.getAmount(menus))
+                .sum();
     }
 }

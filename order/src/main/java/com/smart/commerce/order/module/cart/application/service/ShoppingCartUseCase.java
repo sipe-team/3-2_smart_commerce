@@ -8,6 +8,9 @@ import com.smart.commerce.order.module.cart.domain.MenuClient;
 import com.smart.commerce.order.module.cart.domain.ShoppingCart;
 import com.smart.commerce.order.module.cart.domain.ShoppingCartRepository;
 import com.smart.commerce.order.module.order.application.port.out.ShoppingCartPort;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -39,10 +42,6 @@ public class ShoppingCartUseCase implements ShoppingCartPort {
         cartRepository.save(cart);
     }
 
-    public ShoppingCart findByCustomerId(final Long customerId) {
-        return getCart(customerId);
-    }
-
     private ShoppingCart getCart(final Long customerId) {
         return cartRepository.findByCustomerId(customerId)
                 .orElseThrow(() -> new NotFoundCartException(customerId));
@@ -54,8 +53,18 @@ public class ShoppingCartUseCase implements ShoppingCartPort {
     }
 
     @Override
-    public ShoppingCartSnapshot getItems(
-            final Long customerId) {
-        return null;
+    public ShoppingCartSnapshot getItems(final Long customerId) {
+        final ShoppingCart cart = getCart(customerId);
+        final Map<Long, Menu> menus = createMap(menuClient.findAllById(cart.getMenuIds()));
+        return new ShoppingCartSnapshot(cart.getStoreId(), cart.getAmount(menus));
+    }
+
+    private Map<Long, Menu> createMap(List<Menu> menus) {
+        return menus.stream()
+                .collect(Collectors.toMap(
+                        Menu::menuId,
+                        menu -> menu,
+                        (existing, replacement) -> replacement
+                ));
     }
 }

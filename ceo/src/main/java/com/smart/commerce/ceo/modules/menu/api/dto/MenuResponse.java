@@ -1,4 +1,4 @@
-package com.smart.commerce.ceo.modules.menu.api;
+package com.smart.commerce.ceo.modules.menu.api.dto;
 
 import com.smart.commerce.ceo.modules.menu.domain.Menu;
 

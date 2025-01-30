@@ -2,7 +2,7 @@ package com.smart.commerce.ceo.modules.menu.application;
 
 import com.smart.commerce.ceo.modules.commodity.application.CommodityQueryService;
 import com.smart.commerce.ceo.modules.commodity.domain.CommodityId;
-import com.smart.commerce.ceo.modules.menu.api.MenuResponse;
+import com.smart.commerce.ceo.modules.menu.api.dto.MenuResponse;
 import com.smart.commerce.ceo.modules.menu.api.dto.MenuCreateRequest;
 import com.smart.commerce.ceo.modules.menu.api.dto.MenuUpdateRequest;
 import com.smart.commerce.ceo.modules.menu.domain.*;
@@ -29,7 +29,7 @@ public class MenuService {
         MenuPrice menuPrice = new MenuPrice(menuCreateRequest.price());
         MenuGroupId menuGroupId = new MenuGroupId(menuCreateRequest.menuGroupId());
 
-        if(menuGroupRepository.existsById(menuGroupId)) throw new IllegalArgumentException("존재하지 않는 메뉴 그룹입니다.");
+        if(!menuGroupRepository.existsById(menuGroupId)) throw new IllegalArgumentException("존재하지 않는 메뉴 그룹입니다.");
 
         Menu menu = new Menu(menuId, menuCreateRequest.storeId(), menuName, menuPrice, menuGroupId, true);
 

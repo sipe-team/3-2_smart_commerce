@@ -15,7 +15,7 @@ public class MenuName {
     private boolean isValid(String value) {
         if (value == null || value.trim().isEmpty()) return false;
         if (value.length() > 15) return false;
-        if (!value.matches("[\\w ()\\[\\]+&/_]*")) return false;
+        if (value.matches("[\\w ()\\[\\]+&/_]*")) return false;
         //TODO: purgomalum 연동 필요
         return true;
     }

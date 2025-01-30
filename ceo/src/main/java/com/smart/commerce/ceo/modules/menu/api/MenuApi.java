@@ -1,6 +1,8 @@
-package com.smart.commerce.ceo.modules.menu.api.dto;
+package com.smart.commerce.ceo.modules.menu.api;
 
-import com.smart.commerce.ceo.modules.menu.api.MenuResponse;
+import com.smart.commerce.ceo.modules.menu.api.dto.MenuCreateRequest;
+import com.smart.commerce.ceo.modules.menu.api.dto.MenuResponse;
+import com.smart.commerce.ceo.modules.menu.api.dto.MenuUpdateRequest;
 import com.smart.commerce.ceo.modules.menu.application.MenuListResponse;
 import com.smart.commerce.ceo.modules.menu.application.MenuService;
 import org.springframework.http.ResponseEntity;

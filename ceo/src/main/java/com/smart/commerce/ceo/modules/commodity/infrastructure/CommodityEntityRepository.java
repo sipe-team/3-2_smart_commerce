@@ -9,4 +9,5 @@ import java.util.UUID;
 public interface CommodityEntityRepository extends JpaRepository<CommodityEntity, Integer> {
     Optional<CommodityEntity> findById(UUID id);
     List<CommodityEntity> findAllByOrderByIdDesc();
+    boolean existsById(UUID id);
 }

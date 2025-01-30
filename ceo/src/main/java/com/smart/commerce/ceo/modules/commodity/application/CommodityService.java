@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class CommodityService {
+public class CommodityService implements CommodityQueryService {
     private final CommodityRepository commodityRepository;
 
     public CommodityService(CommodityRepository commodityRepository) {
@@ -42,10 +42,9 @@ public class CommodityService {
         commodityRepository.save(commodity);
     }
 
-    public CommodityResponse getCommodity(UUID commodityIdStr) {
+    public Commodity getCommodity(UUID commodityIdStr) {
         CommodityId commodityId = new CommodityId(commodityIdStr);
         return commodityRepository.findById(commodityId)
-                .map(CommodityResponse::of)
                 .orElseThrow(()->new IllegalArgumentException("존재하지 않는 상품입니다."));
     }
 

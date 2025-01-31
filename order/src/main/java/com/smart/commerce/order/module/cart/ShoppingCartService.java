@@ -1,6 +1,6 @@
 package com.smart.commerce.order.module.cart;
 
-import com.smart.commerce.order.module.cart.application.dto.ShoppingCart;
+import com.smart.commerce.order.module.cart.application.dto.ShoppingCartSnapshot;
 
 public interface ShoppingCartService {
     void clearCart();
@@ -8,5 +8,5 @@ public interface ShoppingCartService {
     void order();
 
     //    void setStore(Commodity store);
-    ShoppingCart getItems(int userId);
+    ShoppingCartSnapshot getItems(int customerId);
 }

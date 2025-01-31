@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import lombok.Getter;
 
+@Getter
 public class OrderLines {
 
     private final List<OrderLine> orderLines;
@@ -54,15 +56,15 @@ public class OrderLines {
                 .findFirst();
     }
 
-    public List<Long> getMenuIds() {
+    public List<Long> menuIds() {
         return orderLines.stream()
                 .map(OrderLine::getMenuId)
                 .collect(Collectors.toList());
     }
 
-    public Long getAmount(Map<Long, Menu> menus) {
+    public Long calculateAmount(Map<Long, Menu> menus) {
         return orderLines.stream()
-                .mapToLong(orderLine -> orderLine.getAmount(menus))
+                .mapToLong(orderLine -> orderLine.calculateAmount(menus))
                 .sum();
     }
 }

@@ -3,15 +3,17 @@ package com.smart.commerce.order.module.cart.domain;
 import java.util.List;
 import java.util.Map;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter
+@NoArgsConstructor
 public class ShoppingCart {
 
-    private final Long customerId;
+    private Long customerId;
 
-    @Getter
     private Long storeId;
 
-    private final OrderLines orderLines;
+    private OrderLines orderLines;
 
     public ShoppingCart(final Long customerId, final Long storeId) {
         this.customerId = customerId;
@@ -39,11 +41,11 @@ public class ShoppingCart {
         orderLines.remove(menuId);
     }
 
-    public List<Long> getMenuIds() {
-        return orderLines.getMenuIds();
+    public List<Long> menuIds() {
+        return orderLines.menuIds();
     }
 
-    public Long getAmount(Map<Long, Menu> menus){
-        return orderLines.getAmount(menus);
+    public Long calculateAmount(Map<Long, Menu> menus) {
+        return orderLines.calculateAmount(menus);
     }
 }

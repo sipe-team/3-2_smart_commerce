@@ -5,12 +5,14 @@ import java.util.Map;
 import java.util.Optional;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter
+@NoArgsConstructor
 @EqualsAndHashCode
 public class OrderLine {
 
-    @Getter
-    private final Long menuId;
+    private Long menuId;
     private int quantity;
 
     public OrderLine(final Long menuId) {
@@ -33,7 +35,7 @@ public class OrderLine {
         return this.menuId.equals(menuId);
     }
 
-    public Long getAmount(Map<Long, Menu> menus) {
+    public Long calculateAmount(Map<Long, Menu> menus) {
         return Optional.ofNullable(menus.get(menuId))
                 .map(menu -> (long) menu.price() * quantity)
                 .orElseThrow(() -> new NotFoundMenuException(menuId));

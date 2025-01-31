@@ -42,6 +42,10 @@ public class ShoppingCartUseCase implements ShoppingCartPort {
         cartRepository.save(cart);
     }
 
+    public ShoppingCart findCart(final Long customerId){
+        return getCart(customerId);
+    }
+
     private ShoppingCart getCart(final Long customerId) {
         return cartRepository.findByCustomerId(customerId)
                 .orElseThrow(() -> new NotFoundCartException(customerId));
@@ -55,8 +59,8 @@ public class ShoppingCartUseCase implements ShoppingCartPort {
     @Override
     public ShoppingCartSnapshot getItems(final Long customerId) {
         final ShoppingCart cart = getCart(customerId);
-        final Map<Long, Menu> menus = createMap(menuClient.findAllById(cart.getMenuIds()));
-        return new ShoppingCartSnapshot(cart.getStoreId(), cart.getAmount(menus));
+        final Map<Long, Menu> menus = createMap(menuClient.findAllById(cart.menuIds()));
+        return new ShoppingCartSnapshot(cart.getStoreId(), cart.calculateAmount(menus));
     }
 
     private Map<Long, Menu> createMap(List<Menu> menus) {
